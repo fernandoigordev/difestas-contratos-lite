@@ -153,10 +153,14 @@ select {
 .field-input {
   display: block;
   width: 100%;
+  min-width: 0;
   border: 1px solid #d1d5db;
   border-radius: 10px;
   padding: 10px 12px;
-  font-size: 15px;
+  /* 16px é o limiar que o Safari no iOS usa pra decidir se dá zoom
+     automático ao focar o campo; abaixo disso o zoom acontecia e dava
+     impressão de layout quebrado ao tocar nos campos. */
+  font-size: 16px;
   background: #fff;
 }
 
@@ -190,7 +194,14 @@ select {
   display: grid;
 }
 .grid-cols-2 {
-  grid-template-columns: 1fr 1fr;
+  /* minmax(0, 1fr) em vez de 1fr: evita que inputs nativos (date/time do
+     iOS, por ex.) forcem a coluna a crescer além do espaço disponível e
+     quebrem o alinhamento da linha em telas estreitas. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+.grid > *,
+.flex > * {
+  min-width: 0;
 }
 .items-center {
   align-items: center;
