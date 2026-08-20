@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Contrato de Prestação de Serviços - {{clientName}}</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 11.5pt;
+    line-height: 1.45;
+    color: #1a1a1a;
+    margin: 0;
+    padding: 22mm 18mm;
+  }
+  h1.doc-title {
+    text-align: center;
+    font-size: 14pt;
+    text-transform: uppercase;
+    margin: 0 0 4mm 0;
+  }
+  h1.doc-title small {
+    display: block;
+    font-size: 10pt;
+    font-weight: normal;
+    margin-top: 2mm;
+  }
+  .party-block { margin-bottom: 3mm; }
+  .party-block b { display: inline; }
+  .field-grid { display: flex; flex-wrap: wrap; gap: 0 8mm; }
+  .field-grid .field { flex: 1 1 45%; margin: 1mm 0; }
+  .intro { margin: 4mm 0; text-align: justify; }
+  hr.sep { border: none; border-top: 1px solid #999; margin: 5mm 0; }
+  h2.clause-title {
+    font-size: 11.5pt;
+    text-transform: uppercase;
+    margin: 5mm 0 2mm 0;
+    page-break-after: avoid;
+  }
+  p.clause-item {
+    margin: 1.5mm 0;
+    text-align: justify;
+    orphans: 3;
+    widows: 3;
+  }
+  ol.clause-list { margin: 1.5mm 0; padding-left: 5mm; }
+  table.cancel-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 3mm 0;
+    font-size: 10.5pt;
+    page-break-inside: avoid;
+  }
+  table.cancel-table th, table.cancel-table td {
+    border: 1px solid #444;
+    padding: 1.8mm 2.5mm;
+  }
+  table.cancel-table th { background: #f1eeee; text-align: left; }
+  table.cancel-table td.num { text-align: right; }
+  .items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2mm 0 4mm 0;
+    font-size: 10.5pt;
+  }
+  .items-table th, .items-table td {
+    border: 1px solid #999;
+    padding: 1.6mm 2.2mm;
+    text-align: left;
+  }
+  .items-table td.num, .items-table th.num { text-align: right; white-space: nowrap; }
+  .checkbox-line { margin: 1mm 0; }
+  .checkbox-mark {
+    display: inline-block;
+    width: 3.6mm;
+    height: 3.6mm;
+    border: 1px solid #333;
+    text-align: center;
+    line-height: 3.4mm;
+    font-size: 8pt;
+    margin-right: 1.5mm;
+    vertical-align: middle;
+  }
+  .attention-box {
+    border: 1.4px solid #333;
+    padding: 3mm 4mm;
+    margin: 3mm 0;
+    background: #faf7f2;
+  }
+  .signature-page { page-break-before: always; }
+  .signature-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 8mm;
+    margin-top: 8mm;
+  }
+  .signature-col { flex: 1; text-align: center; }
+  .signature-img { max-width: 55mm; max-height: 22mm; display: block; margin: 0 auto 2mm auto; }
+  .signature-line { border-top: 1px solid #333; margin-top: 14mm; padding-top: 1.5mm; }
+  .signature-line.has-image { margin-top: 2mm; }
+  .signed-note { font-size: 9pt; color: #444; margin-top: 1.5mm; }
+  .annex-title {
+    text-align: center;
+    font-size: 12.5pt;
+    text-transform: uppercase;
+    margin: 0 0 4mm 0;
+    page-break-before: always;
+  }
+  .muted { color: #555; }
+  .underline-fill { border-bottom: 1px solid #333; display: inline-block; min-width: 40mm; }
+</style>
+</head>
+<body>
+
+  <h1 class="doc-title">
+    Contrato de Prestação de Serviços de<br />Decoração de Festas e Eventos
+    <small>{{companyName}}</small>
+  </h1>
+
+  <div class="party-block">
+    <p class="clause-item"><b>CONTRATADA:</b> {{companyName}}, pessoa jurídica de direito privado, com sede em {{companyAddress}}, neste ato representada por sua responsável legal, doravante denominada simplesmente CONTRATADA.</p>
+  </div>
+
+  <div class="party-block">
+    <p class="clause-item"><b>CONTRATANTE:</b></p>
+    <div class="field-grid">
+      <div class="field"><b>Nome completo:</b> {{clientName}}</div>
+      <div class="field"><b>CPF:</b> {{clientCpf}} &nbsp; <b>RG:</b> {{clientRg}}</div>
+      <div class="field"><b>Nacionalidade:</b> {{clientNationality}}</div>
+      <div class="field"><b>Estado civil:</b> {{clientMaritalStatus}}</div>
+      <div class="field" style="flex-basis:100%"><b>Endereço:</b> {{clientAddress}}</div>
+      <div class="field"><b>Cidade/UF:</b> {{clientCityUf}}</div>
+      <div class="field"><b>CEP:</b> {{clientCep}}</div>
+      <div class="field"><b>Telefone/WhatsApp:</b> {{clientPhone}}</div>
+      <div class="field"><b>E-mail:</b> {{clientEmail}}</div>
+    </div>
+  </div>
+
+  <p class="intro">As partes acima identificadas celebram o presente <b>CONTRATO DE PRESTAÇÃO DE SERVIÇOS DE DECORAÇÃO DE FESTAS E EVENTOS</b>, mediante as cláusulas e condições seguintes.</p>
+
+  <hr class="sep" />
+
+  <h2 class="clause-title">Cláusula 1ª – Do Objeto do Contrato</h2>
+  <p class="clause-item">1.1. O presente contrato tem por objeto a prestação, pela CONTRATADA, de serviços de decoração para o evento do CONTRATANTE, conforme as características, itens, quantidades, valores e condições descritos neste instrumento e/ou em orçamento/proposta comercial expressamente aprovado pelo CONTRATANTE.</p>
+  <p class="clause-item">1.2. Os serviços contratados são específicos para o evento abaixo:</p>
+  <div class="field-grid">
+    <div class="field"><b>Tipo de evento:</b> {{eventType}}</div>
+    <div class="field"><b>Tema:</b> {{eventTheme}}</div>
+    <div class="field"><b>Data:</b> {{eventDateFormatted}}</div>
+    <div class="field"><b>Horário de início:</b> {{eventStartTime}}</div>
+    <div class="field"><b>Horário previsto para término:</b> {{eventEndTime}}</div>
+    <div class="field" style="flex-basis:100%"><b>Local:</b> {{eventLocation}}</div>
+  </div>
+  <p class="clause-item">1.3. Fazem parte da contratação somente os itens expressamente descritos neste contrato ou em orçamento/proposta comercial anexado e aceito pelas partes.</p>
+  <p class="clause-item">1.4. Qualquer item, serviço, estrutura, alteração, deslocamento, montagem adicional, desmontagem adicional ou outro serviço que não esteja expressamente incluído será considerado contratação adicional e dependerá de orçamento e aprovação prévia.</p>
+
+  <h2 class="clause-title">Cláusula 2ª – Do Orçamento e dos Itens Contratados</h2>
+  <p class="clause-item">2.1. O valor total dos serviços contratados é de: <b>{{totalValueFormatted}} ({{totalValueExtenso}})</b>.</p>
+  <p class="clause-item">2.2. Os itens incluídos são:</p>
+  {{#if includedItems}}
+  <table class="items-table">
+    <thead><tr><th>Item</th><th class="num">Qtd.</th><th class="num">Valor</th></tr></thead>
+    <tbody>
+      {{#each includedItems}}
+      <tr><td>{{this.description}}</td><td class="num">{{this.quantityLabel}}</td><td class="num">{{this.valueLabel}}</td></tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{else}}
+  <p class="clause-item muted">(nenhum item cadastrado)</p>
+  {{/if}}
+  <p class="clause-item">2.3. O CONTRATANTE declara ter conferido os itens, quantidades, características e condições da decoração antes da assinatura deste contrato.</p>
+  <p class="clause-item">2.4. Fotografias, imagens de referência, desenhos, inspirações ou imagens utilizadas durante a negociação possuem caráter ilustrativo, salvo quando expressamente indicado que determinada imagem representa exatamente o projeto contratado.</p>
+  <p class="clause-item">2.5. Pequenas adaptações decorrentes de disponibilidade de materiais, condições do espaço, segurança, logística ou características do local poderão ser realizadas pela CONTRATADA, preservando-se, sempre que possível, o conceito, padrão e finalidade da decoração contratada.</p>
+  <p class="clause-item">2.6. Alterações substanciais solicitadas pelo CONTRATANTE após a contratação poderão gerar alteração de preço e/ou necessidade de novo orçamento.</p>
+
+  <h2 class="clause-title">Cláusula 3ª – Da Reserva da Data</h2>
+  <p class="clause-item">3.1. A assinatura deste contrato e o pagamento da primeira parcela, ou do valor integral quando assim estabelecido, implicam a reserva da data e do horário do evento na agenda da CONTRATADA.</p>
+  <p class="clause-item">3.2. A reserva da data constitui parte relevante da contratação, uma vez que a CONTRATADA organiza sua agenda, disponibilidade de equipe, logística, materiais e capacidade operacional considerando o compromisso assumido.</p>
+  <p class="clause-item">3.3. Uma vez confirmada a reserva, a CONTRATADA poderá deixar de aceitar outros eventos para a mesma data e horário ou limitar sua capacidade de atendimento naquele período.</p>
+  <p class="clause-item">3.4. O CONTRATANTE declara estar ciente de que o cancelamento por sua iniciativa poderá gerar consequências financeiras previstas neste contrato, observados os prazos e percentuais estabelecidos na Cláusula 7ª.</p>
+
+  <h2 class="clause-title">Cláusula 4ª – Do Pagamento</h2>
+  <p class="clause-item">4.1. O pagamento será realizado da seguinte forma:</p>
+  <div class="field-grid">
+    <div class="field"><b>Valor total:</b> {{totalValueFormatted}}</div>
+    <div class="field"><b>Entrada/reserva:</b> {{downPaymentFormatted}} ({{downPaymentPercentFormatted}})</div>
+    <div class="field"><b>Saldo:</b> {{balanceValueFormatted}}</div>
+    <div class="field"><b>Vencimento do saldo:</b> {{balanceDueDateFormatted}}</div>
+  </div>
+  <p class="clause-item">4.2. Quando expressamente acordado entre as partes, o valor poderá ser pago integralmente no ato da contratação.</p>
+  <p class="clause-item">4.3. O pagamento poderá ser realizado por PIX, transferência bancária, cartão, dinheiro ou outro meio previamente acordado. Forma escolhida: <b>{{paymentMethod}}</b>.</p>
+  <p class="clause-item">4.4. A confirmação definitiva da contratação dependerá da assinatura deste contrato e do pagamento da quantia estabelecida para confirmação da reserva.</p>
+  <p class="clause-item">4.5. O atraso no pagamento de qualquer parcela poderá sujeitar o CONTRATANTE às consequências previstas neste contrato, inclusive suspensão de serviços preparatórios, impossibilidade de realização de alterações e, conforme o caso, resolução contratual por inadimplemento.</p>
+  <p class="clause-item">4.6. Eventuais taxas cobradas por instituições financeiras, operadoras de cartão ou meios de pagamento serão de responsabilidade de quem legalmente as suportar, conforme informado previamente ao CONTRATANTE.</p>
+
+  <h2 class="clause-title">Cláusula 5ª – Das Obrigações da CONTRATADA</h2>
+  <p class="clause-item">5.1. São obrigações da CONTRATADA:</p>
+  <ol class="clause-list" type="a">
+    <li>executar os serviços contratados de acordo com este contrato e com o orçamento aprovado;</li>
+    <li>disponibilizar os itens contratados, observadas as condições previstas neste instrumento;</li>
+    <li>realizar a montagem dentro das condições de acesso e horários previamente acordados;</li>
+    <li>utilizar equipe e materiais compatíveis com o serviço contratado;</li>
+    <li>comunicar ao CONTRATANTE situações que possam comprometer a execução do serviço;</li>
+    <li>cumprir as normas de segurança e as condições razoavelmente exigíveis para a execução da decoração.</li>
+  </ol>
+  <p class="clause-item">5.2. A CONTRATADA poderá substituir determinado item por outro de características, qualidade, função e valor equivalentes ou superiores quando houver indisponibilidade decorrente de fornecedor, dano, quebra, atraso logístico ou circunstância não imputável à CONTRATADA.</p>
+  <p class="clause-item">5.3. A substituição prevista no item anterior não poderá descaracterizar injustificadamente o projeto contratado.</p>
+
+  <h2 class="clause-title">Cláusula 6ª – Das Obrigações do CONTRATANTE</h2>
+  <p class="clause-item">6.1. São obrigações do CONTRATANTE:</p>
+  <ol class="clause-list" type="a">
+    <li>fornecer corretamente todas as informações necessárias à execução do serviço;</li>
+    <li>efetuar os pagamentos nos prazos estabelecidos;</li>
+    <li>disponibilizar o local para montagem nas condições e horários previamente combinados;</li>
+    <li>garantir que o local possua condições adequadas de acesso, segurança e espaço para montagem;</li>
+    <li>informar previamente restrições impostas pelo local do evento;</li>
+    <li>responsabilizar-se pela limpeza e preparação do espaço quando essa atividade não estiver expressamente incluída no orçamento;</li>
+    <li>não remover, deslocar, desmontar ou permitir que terceiros manipulem os itens da decoração sem autorização da CONTRATADA;</li>
+    <li>responsabilizar-se por danos, perdas ou extravios causados por convidados, contratantes, fornecedores, funcionários do local ou terceiros sob sua responsabilidade, quando comprovadamente relacionados aos itens da CONTRATADA.</li>
+  </ol>
+  <p class="clause-item">6.2. Danos ou perdas de peças e equipamentos poderão ser cobrados do CONTRATANTE pelo valor necessário para reparação ou reposição, mediante comprovação razoável do prejuízo.</p>
+
+  <h2 class="clause-title">Cláusula 7ª – Do Cancelamento pelo CONTRATANTE</h2>
+  <p class="clause-item">7.1. O CONTRATANTE poderá solicitar o cancelamento da contratação a qualquer momento, mediante comunicação por escrito à CONTRATADA.</p>
+  <p class="clause-item">7.2. O cancelamento será considerado efetivado na data em que a solicitação for recebida pela CONTRATADA por meio que permita sua comprovação.</p>
+  <p class="clause-item">7.3. Em razão da reserva de data, planejamento, organização, disponibilidade de equipe, preparação, custos administrativos e demais compromissos decorrentes da contratação, o cancelamento poderá gerar retenção de parte do valor contratado, observados os seguintes critérios:</p>
+  <table class="cancel-table">
+    <thead><tr><th>Antecedência em relação ao evento</th><th>Retenção contratual</th></tr></thead>
+    <tbody>
+      <tr><td>Mais de 120 dias</td><td class="num">20% do valor contratado</td></tr>
+      <tr><td>De 91 a 120 dias</td><td class="num">30% do valor contratado</td></tr>
+      <tr><td>De 61 a 90 dias</td><td class="num">40% do valor contratado</td></tr>
+      <tr><td>De 31 a 60 dias</td><td class="num">60% do valor contratado</td></tr>
+      <tr><td>De 16 a 30 dias</td><td class="num">80% do valor contratado</td></tr>
+      <tr><td>De 8 a 15 dias</td><td class="num">90% do valor contratado</td></tr>
+      <tr><td>7 dias ou menos</td><td class="num">até 100% do valor contratado</td></tr>
+    </tbody>
+  </table>
+  <p class="clause-item">7.4. Os percentuais acima constituem critério contratual previamente informado ao CONTRATANTE para disciplinar os efeitos econômicos do cancelamento e deverão ser interpretados de acordo com a legislação aplicável e com a natureza concreta da contratação.</p>
+  <p class="clause-item">7.5. Caso já tenham sido adquiridos ou produzidos especificamente para o evento materiais personalizados, produtos, impressões, estruturas, flores, itens de terceiros ou outros bens que não possam ser razoavelmente reaproveitados ou cancelados sem custo, tais valores poderão ser considerados na apuração do cancelamento, desde que devidamente comprováveis.</p>
+  <p class="clause-item">7.6. A soma das retenções e valores efetivamente não recuperáveis relacionados à contratação não poderá resultar em cobrança superior ao valor total contratado.</p>
+  <p class="clause-item">7.7. Caso o valor já pago seja superior ao valor que, de acordo com a tabela acima e demais valores legitimamente considerados, deva ser retido, eventual saldo será restituído ao CONTRATANTE.</p>
+  <p class="clause-item">7.8. Caso o valor pago seja inferior ao valor devido em razão do cancelamento, a CONTRATADA poderá cobrar a diferença dentro dos limites legalmente admissíveis.</p>
+  <p class="clause-item">7.9. A CONTRATADA poderá, por mera liberalidade e sem reconhecimento de obrigação, oferecer ao CONTRATANTE a conversão total ou parcial do valor pago em crédito para futura contratação, observadas as condições estabelecidas no documento de concessão do crédito.</p>
+
+  <h2 class="clause-title">Cláusula 8ª – Da Remarcação do Evento</h2>
+  <p class="clause-item">8.1. O CONTRATANTE poderá solicitar a alteração da data do evento, desde que a solicitação seja realizada por escrito e haja disponibilidade na agenda da CONTRATADA.</p>
+  <p class="clause-item">8.2. A remarcação não será automática e dependerá de confirmação expressa da CONTRATADA.</p>
+  <p class="clause-item">8.3. A nova data deverá ser compatível com a disponibilidade de equipe, materiais e fornecedores.</p>
+  <p class="clause-item">8.4. Caso a nova data tenha valor de contratação diferente, poderá haver ajuste do preço.</p>
+  <p class="clause-item">8.5. Se a remarcação implicar custos adicionais de fornecedores, transporte, materiais ou outros serviços, tais valores poderão ser repassados ao CONTRATANTE mediante prévia comunicação.</p>
+  <p class="clause-item">8.6. A remarcação não poderá ser utilizada para afastar os efeitos financeiros de um cancelamento quando a nova data não puder ser estabelecida por indisponibilidade da CONTRATADA ou quando o CONTRATANTE desistir posteriormente da nova data.</p>
+
+  <h2 class="clause-title">Cláusula 9ª – Do Crédito</h2>
+  <p class="clause-item">9.1. Quando a CONTRATADA oferecer a possibilidade de conversão do valor pago em crédito, o crédito deverá ser formalizado por escrito, indicando: a) valor do crédito; b) data de concessão; c) prazo de utilização; d) serviços em que poderá ser utilizado; e) eventual diferença de preço; f) condições de utilização.</p>
+  <p class="clause-item">9.2. Salvo acordo escrito em sentido contrário, o crédito será pessoal e vinculado ao CONTRATANTE, não podendo ser transferido a terceiros.</p>
+  <p class="clause-item">9.3. A utilização do crédito dependerá da disponibilidade de data da CONTRATADA.</p>
+  <p class="clause-item">9.4. O crédito não poderá ser convertido automaticamente em dinheiro, salvo quando houver obrigação legal de restituição ou acordo escrito entre as partes.</p>
+
+  <h2 class="clause-title">Cláusula 10ª – Do Cancelamento pela CONTRATADA</h2>
+  <p class="clause-item">10.1. Caso a CONTRATADA, sem justa causa e por sua exclusiva responsabilidade, não possa realizar o serviço contratado na data acordada, deverá comunicar o CONTRATANTE tão logo tenha conhecimento da impossibilidade.</p>
+  <p class="clause-item">10.2. Nessa hipótese, as partes poderão buscar, prioritariamente, a remarcação do evento ou a substituição por solução equivalente, quando possível.</p>
+  <p class="clause-item">10.3. Não sendo possível a remarcação ou solução equivalente, serão observados os direitos do CONTRATANTE previstos na legislação aplicável, inclusive quanto à restituição dos valores eventualmente devidos.</p>
+  <p class="clause-item">10.4. A CONTRATADA não será responsabilizada por impossibilidade de execução decorrente de fato de terceiro, restrição imposta pelo local do evento, ausência de acesso, caso fortuito, força maior ou outras circunstâncias alheias à sua responsabilidade, observada a legislação aplicável.</p>
+
+  <h2 class="clause-title">Cláusula 11ª – Do Direito de Arrependimento</h2>
+  <p class="clause-item">11.1. Quando a contratação estiver submetida ao direito de arrependimento previsto na legislação consumerista, serão respeitados os direitos legalmente assegurados ao consumidor.</p>
+  <p class="clause-item">11.2. Nas hipóteses legalmente aplicáveis de contratação fora do estabelecimento comercial, o CONTRATANTE poderá exercer o direito de arrependimento dentro do prazo legal, observadas as condições previstas na legislação vigente.</p>
+  <p class="clause-item">11.3. A presente cláusula não limita ou exclui direitos assegurados ao consumidor por norma legal.</p>
+
+  <h2 class="clause-title">Cláusula 12ª – Da Alteração do Projeto</h2>
+  <p class="clause-item">12.1. Após a aprovação do orçamento e/ou projeto, alterações solicitadas pelo CONTRATANTE deverão ser avaliadas pela CONTRATADA.</p>
+  <p class="clause-item">12.2. Alterações que impliquem aumento de materiais, mão de obra, transporte, estrutura ou outros custos poderão gerar cobrança adicional.</p>
+  <p class="clause-item">12.3. Nenhuma alteração de preço será realizada sem prévia comunicação ao CONTRATANTE e sua concordância.</p>
+  <p class="clause-item">12.4. Alterações solicitadas próximas à data do evento poderão não ser possíveis em razão de disponibilidade de materiais, fornecedores e logística.</p>
+
+  <h2 class="clause-title">Cláusula 13ª – Do Local do Evento</h2>
+  <p class="clause-item">13.1. O CONTRATANTE declara que possui autorização para utilização do local informado neste contrato.</p>
+  <p class="clause-item">13.2. O CONTRATANTE deverá informar previamente todas as regras, restrições e horários impostos pelo espaço do evento.</p>
+  <p class="clause-item">13.3. Caso o local impeça ou limite a montagem, desmontagem ou utilização de determinados itens previamente contratados, a CONTRATADA comunicará a situação ao CONTRATANTE e buscará, quando possível, solução equivalente.</p>
+  <p class="clause-item">13.4. Custos adicionais decorrentes de exigências extraordinárias do local que não tenham sido informadas previamente poderão ser objeto de orçamento adicional.</p>
+
+  <h2 class="clause-title">Cláusula 14ª – Da Montagem e Desmontagem</h2>
+  <p class="clause-item">14.1. A montagem será realizada dentro do horário previamente combinado com o CONTRATANTE e/ou com o responsável pelo espaço.</p>
+  <p class="clause-item">14.2. O CONTRATANTE deverá garantir o acesso da equipe da CONTRATADA ao local.</p>
+  <p class="clause-item">14.3. Atrasos provocados pela ausência de acesso, responsável, autorização ou liberação do local poderão comprometer o cronograma de montagem.</p>
+  <p class="clause-item">14.4. Caso seja necessária permanência extraordinária da equipe em razão de fato imputável ao CONTRATANTE ou ao local, poderá ser cobrado valor adicional previamente informado, quando possível.</p>
+
+  <h2 class="clause-title">Cláusula 15ª – Dos Itens Locados e da Responsabilidade por Danos</h2>
+  <p class="clause-item">15.1. Os itens disponibilizados pela CONTRATADA permanecem de sua propriedade, salvo quando expressamente indicado de outra forma.</p>
+  <p class="clause-item">15.2. O CONTRATANTE deverá zelar pela conservação dos itens durante o período em que estiverem sob sua responsabilidade.</p>
+  <p class="clause-item">15.3. Em caso de perda, furto, extravio, quebra ou dano causado pelo CONTRATANTE ou por terceiros sob sua responsabilidade, poderá ser cobrado o custo razoável de reparação ou reposição.</p>
+  <p class="clause-item">15.4. A cobrança deverá ser acompanhada, quando necessário, de documentação ou orçamento que permita demonstrar o valor do prejuízo.</p>
+
+  <h2 class="clause-title">Cláusula 16ª – Dos Serviços de Terceiros</h2>
+  <p class="clause-item">16.1. Quando determinados produtos ou serviços forem fornecidos diretamente por terceiros indicados ou contratados pela CONTRATADA, as condições específicas desses fornecedores poderão ser informadas ao CONTRATANTE.</p>
+  <p class="clause-item">16.2. Custos de terceiros já contratados especificamente para o evento poderão ser considerados no tratamento de eventual cancelamento, desde que não sejam recuperáveis e possam ser razoavelmente comprovados.</p>
+
+  <h2 class="clause-title">Cláusula 17ª – Da Comunicação entre as Partes</h2>
+  <p class="clause-item">17.1. As comunicações relativas ao contrato poderão ser realizadas por WhatsApp, e-mail ou outro meio que permita comprovação.</p>
+  <p class="clause-item">17.2. O CONTRATANTE deverá manter seus dados de contato atualizados.</p>
+  <p class="clause-item">17.3. Solicitações de cancelamento, alteração de data, mudança relevante no projeto ou outras decisões que produzam efeitos contratuais deverão ser realizadas por escrito.</p>
+  <p class="clause-item">17.4. Conversas informais, sugestões ou simulações de orçamento não representarão alteração do contrato sem confirmação expressa das partes.</p>
+
+  <h2 class="clause-title">Cláusula 18ª – Da Aprovação do Contrato</h2>
+  <p class="clause-item">18.1. O CONTRATANTE declara que recebeu oportunidade adequada para ler este contrato antes de sua assinatura.</p>
+  <p class="clause-item">18.2. O CONTRATANTE declara ter compreendido especialmente as cláusulas relativas a:</p>
+  <p class="checkbox-line"><span class="checkbox-mark">&nbsp;</span> pagamento &nbsp;&nbsp; <span class="checkbox-mark">&nbsp;</span> reserva de data &nbsp;&nbsp; <span class="checkbox-mark">&nbsp;</span> cancelamento</p>
+  <p class="checkbox-line"><span class="checkbox-mark">&nbsp;</span> remarcação &nbsp;&nbsp; <span class="checkbox-mark">&nbsp;</span> crédito &nbsp;&nbsp; <span class="checkbox-mark">&nbsp;</span> responsabilidade por danos &nbsp;&nbsp; <span class="checkbox-mark">&nbsp;</span> alterações do projeto</p>
+  <p class="clause-item">18.3. O CONTRATANTE declara que teve oportunidade de solicitar esclarecimentos sobre qualquer disposição antes da assinatura.</p>
+  <p class="clause-item">18.4. As cláusulas que estabelecem consequências financeiras para cancelamento e outras limitações contratuais deverão ser apresentadas de maneira clara e destacada ao CONTRATANTE.</p>
+
+  <h2 class="clause-title">Cláusula 19ª – Da Boa-Fé e do Equilíbrio Contratual</h2>
+  <p class="clause-item">19.1. As partes comprometem-se a cumprir o presente contrato observando os princípios da boa-fé, transparência, cooperação e equilíbrio contratual.</p>
+  <p class="clause-item">19.2. Nenhuma disposição deste contrato deverá ser interpretada como renúncia do consumidor a direitos que sejam assegurados por norma de ordem pública.</p>
+  <p class="clause-item">19.3. Caso qualquer disposição deste contrato seja considerada inválida ou inaplicável pela autoridade competente, as demais disposições permanecerão válidas naquilo que não forem afetadas.</p>
+  <p class="clause-item">19.4. Eventual tolerância de uma parte em relação ao descumprimento de determinada obrigação não constituirá renúncia ou alteração permanente das condições contratadas.</p>
+
+  <h2 class="clause-title">Cláusula 20ª – Da Proteção de Dados</h2>
+  <p class="clause-item">20.1. A CONTRATADA poderá coletar e utilizar os dados pessoais fornecidos pelo CONTRATANTE para fins relacionados à contratação, execução dos serviços, comunicação, emissão de documentos, pagamentos, atendimento e cumprimento de obrigações legais.</p>
+  <p class="clause-item">20.2. O tratamento dos dados será realizado de acordo com a legislação aplicável de proteção de dados pessoais.</p>
+  <p class="clause-item">20.3. Os dados não serão utilizados para finalidade incompatível com a relação contratual, salvo quando houver base legal adequada ou consentimento quando exigido.</p>
+
+  <h2 class="clause-title">Cláusula 21ª – Do Uso de Imagens do Evento</h2>
+  <p class="clause-item">21.1. A CONTRATADA poderá solicitar autorização específica para fotografar ou utilizar imagens da decoração realizada para fins de portfólio, divulgação comercial e redes sociais.</p>
+  <p class="clause-item">21.2. A autorização de uso de imagens foi manifestada da seguinte forma:</p>
+  {{#if imageAuthorization}}
+  <p class="checkbox-line"><span class="checkbox-mark">X</span> AUTORIZO o uso de imagens da decoração para portfólio, site e redes sociais da CONTRATADA.</p>
+  <p class="checkbox-line"><span class="checkbox-mark">&nbsp;</span> NÃO AUTORIZO o uso de imagens da decoração para fins de divulgação.</p>
+  {{else}}
+  <p class="checkbox-line"><span class="checkbox-mark">&nbsp;</span> AUTORIZO o uso de imagens da decoração para portfólio, site e redes sociais da CONTRATADA.</p>
+  <p class="checkbox-line"><span class="checkbox-mark">X</span> NÃO AUTORIZO o uso de imagens da decoração para fins de divulgação.</p>
+  {{/if}}
+  <p class="clause-item">21.3. A recusa à autorização não prejudicará a contratação nem alterará o preço dos serviços.</p>
+
+  <h2 class="clause-title">Cláusula 22ª – Da Solução Amigável de Conflitos</h2>
+  <p class="clause-item">22.1. As partes comprometem-se, sempre que possível, a buscar solução amigável para eventuais divergências relacionadas ao contrato.</p>
+  <p class="clause-item">22.2. A tentativa de solução amigável não impedirá nenhuma das partes de exercer os direitos assegurados pela legislação.</p>
+  <p class="clause-item">22.3. Nenhuma disposição desta cláusula poderá ser interpretada como impedimento ao acesso do consumidor aos órgãos administrativos ou judiciais competentes.</p>
+
+  <h2 class="clause-title">Cláusula 23ª – Da Legislação Aplicável</h2>
+  <p class="clause-item">23.1. Este contrato será interpretado de acordo com a legislação brasileira aplicável à relação jurídica estabelecida entre as partes.</p>
+  <p class="clause-item">23.2. Nas relações de consumo, serão observadas as normas de proteção ao consumidor e demais normas de ordem pública aplicáveis.</p>
+
+  <h2 class="clause-title">Cláusula 24ª – Do Foro</h2>
+  <p class="clause-item">24.1. Eventuais controvérsias decorrentes deste contrato serão submetidas ao foro competente de acordo com a legislação aplicável, preservados os direitos legalmente assegurados ao consumidor quanto ao acesso ao Poder Judiciário.</p>
+
+  <h2 class="clause-title">Cláusula 25ª – Da Integralidade do Contrato</h2>
+  <p class="clause-item">25.1. Este contrato, juntamente com o orçamento/proposta comercial expressamente aprovado e seus anexos, representa o conjunto das condições acordadas entre as partes.</p>
+  <p class="clause-item">25.2. Qualquer alteração deverá ser formalizada por escrito.</p>
+  <p class="clause-item">25.3. Em caso de divergência entre este contrato e materiais publicitários, conversas ou propostas anteriores, deverão ser consideradas as condições expressamente incorporadas ao contrato e ao orçamento aprovado, observada a legislação aplicável.</p>
+
+  <h2 class="clause-title">Cláusula 26ª – Do Aceite Específico da Política de Cancelamento</h2>
+  <div class="attention-box">
+    <p class="clause-item"><b>ATENÇÃO – LEIA ANTES DE ASSINAR.</b> O CONTRATANTE declara que leu e compreendeu especificamente a política de cancelamento prevista na Cláusula 7ª, incluindo os percentuais de retenção conforme a antecedência do cancelamento.</p>
+    <p class="clause-item">O CONTRATANTE declara ter recebido esclarecimentos sobre essa condição antes da contratação e estar ciente de que o cancelamento por sua iniciativa poderá gerar retenção de parte do valor pago, conforme os critérios estabelecidos neste contrato e respeitada a legislação aplicável.</p>
+    <p class="clause-item">Rubrica do CONTRATANTE na Cláusula 7ª: <span class="underline-fill">&nbsp;</span></p>
+    <p class="clause-item">Rubrica do CONTRATANTE na Cláusula 26ª: <span class="underline-fill">&nbsp;</span></p>
+  </div>
+
+  <h2 class="clause-title">Cláusula 27ª – Do Aceite Final</h2>
+  <p class="clause-item">Por estarem de acordo com as condições acima, as partes assinam o presente instrumento, declarando que tiveram oportunidade de ler, compreender e esclarecer suas dúvidas antes da contratação.</p>
+  <div class="field-grid">
+    <div class="field"><b>Cidade:</b> {{signatureCity}}</div>
+    <div class="field"><b>Data:</b> {{contractDateFormatted}}</div>
+  </div>
+
+  <div class="signature-page">
+    <h2 class="clause-title">Assinaturas</h2>
+    <div class="signature-grid">
+      <div class="signature-col">
+        <div class="signature-line">
+          <div><b>CONTRATADA</b></div>
+          <div>{{companyName}}</div>
+        </div>
+        <div class="muted">Representante: {{companyRepresentativeName}}</div>
+        <div class="muted">CPF: {{companyRepresentativeCpf}}</div>
+      </div>
+      <div class="signature-col">
+        <div class="signature-line">
+          <div><b>CONTRATANTE</b></div>
+          <div>{{clientName}}</div>
+        </div>
+        <div class="muted">CPF: {{clientCpf}}</div>
+      </div>
+    </div>
+
+    <div class="signature-grid" style="margin-top: 16mm;">
+      <div class="signature-col">
+        <div class="signature-line">
+          <div><b>TESTEMUNHA 1</b></div>
+        </div>
+      </div>
+      <div class="signature-col">
+        <div class="signature-line">
+          <div><b>TESTEMUNHA 2</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="annex-title">Anexo I – Orçamento e Especificação da Decoração</div>
+  <div class="field-grid">
+    <div class="field"><b>CONTRATANTE:</b> {{clientName}}</div>
+    <div class="field"><b>EVENTO:</b> {{eventType}}{{#if eventTheme}} – {{eventTheme}}{{/if}}</div>
+    <div class="field"><b>DATA:</b> {{eventDateFormatted}}</div>
+    <div class="field"><b>LOCAL:</b> {{eventLocation}}</div>
+    <div class="field" style="flex-basis:100%"><b>VALOR TOTAL:</b> {{totalValueFormatted}}</div>
+  </div>
+
+  <h2 class="clause-title">Itens Contratados</h2>
+  {{#if includedItems}}
+  <table class="items-table">
+    <thead><tr><th>Item</th><th class="num">Qtd.</th><th class="num">Valor</th></tr></thead>
+    <tbody>
+      {{#each includedItems}}
+      <tr><td>{{this.description}}</td><td class="num">{{this.quantityLabel}}</td><td class="num">{{this.valueLabel}}</td></tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{else}}
+  <p class="clause-item muted">(nenhum item cadastrado)</p>
+  {{/if}}
+
+  <h2 class="clause-title">Itens Não Incluídos</h2>
+  {{#if excludedItems}}
+  <ol class="clause-list">
+    {{#each excludedItems}}
+    <li>{{this.description}}</li>
+    {{/each}}
+  </ol>
+  {{else}}
+  <p class="clause-item muted">(nenhum item cadastrado)</p>
+  {{/if}}
+
+  <h2 class="clause-title">Observações</h2>
+  <p class="clause-item">{{#if observations}}{{observations}}{{else}}<span class="muted">(sem observações)</span>{{/if}}</p>
+
+  <div class="annex-title">Anexo II – Comprovante de Pagamento</div>
+  <div class="field-grid">
+    <div class="field"><b>Valor total contratado:</b> {{totalValueFormatted}}</div>
+    <div class="field"><b>Valor pago na contratação:</b> {{downPaymentFormatted}}</div>
+    <div class="field"><b>Saldo:</b> {{balanceValueFormatted}}</div>
+    <div class="field"><b>Forma de pagamento:</b> {{paymentMethod}}</div>
+    <div class="field"><b>Data do pagamento:</b> {{downPaymentDateFormatted}}</div>
+    <div class="field" style="flex-basis:100%"><b>Comprovante/identificação:</b> {{paymentProofReference}}</div>
+  </div>
+
+</body>
+</html>
