@@ -58,6 +58,19 @@ export default function SectionFinalizacao({ data, onChange }: StepProps) {
           onChange={(e) => onChange({ observations: e.target.value })}
         />
       </div>
+
+      <label className="flex items-center gap-2 card cursor-pointer">
+        <input
+          type="checkbox"
+          checked={data.generateAttachments}
+          onChange={(e) => onChange({ generateAttachments: e.target.checked })}
+        />
+        <span className="text-sm">
+          Incluir anexos no PDF (Anexo I – orçamento detalhado, Anexo II – comprovante de pagamento)
+          <br />
+          <span className="text-xs text-gray-500">Aumenta o número de páginas — deixe desmarcado para um contrato mais enxuto.</span>
+        </span>
+      </label>
     </div>
   );
 }

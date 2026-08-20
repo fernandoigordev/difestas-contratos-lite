@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS contracts (
   signature_city TEXT,
   contract_date TEXT,
   observations TEXT,
+  generate_attachments INTEGER NOT NULL DEFAULT 0,
   created_at TEXT NOT NULL,
   updated_at TEXT NOT NULL
 );

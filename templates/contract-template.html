@@ -6,36 +6,79 @@
 <style>
   @page { size: A4; margin: 0; }
   * { box-sizing: border-box; }
+
+  :root {
+    --accent: #7c3aed;
+    --accent-dark: #5b21b6;
+    --accent-tint: #f5f1fd;
+    --ink: #1c1a22;
+    --line: #d8d4e0;
+  }
+
   body {
     font-family: "Times New Roman", Georgia, serif;
     font-size: 11.5pt;
     line-height: 1.45;
-    color: #1a1a1a;
+    color: var(--ink);
     margin: 0;
-    padding: 22mm 18mm;
+    padding: 20mm 18mm 22mm;
   }
+
+  /* ---------- cabeçalho / identidade visual ---------- */
+  .letterhead {
+    display: flex;
+    align-items: center;
+    gap: 5mm;
+    padding-bottom: 4mm;
+    margin-bottom: 5mm;
+    border-bottom: 1.4pt solid var(--accent);
+  }
+  .letterhead-logo { width: 20mm; height: 20mm; object-fit: contain; flex-shrink: 0; }
+  .letterhead-text { flex: 1; }
+  .letterhead-name {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 15pt;
+    font-weight: bold;
+    color: var(--accent-dark);
+    letter-spacing: 0.3pt;
+  }
+  .letterhead-tagline { font-size: 9.5pt; color: #6b6575; margin-top: 0.5mm; }
+
   h1.doc-title {
     text-align: center;
-    font-size: 14pt;
+    font-size: 13.5pt;
+    font-weight: bold;
     text-transform: uppercase;
-    margin: 0 0 4mm 0;
+    letter-spacing: 0.4pt;
+    color: var(--ink);
+    margin: 0 0 5mm 0;
   }
   h1.doc-title small {
     display: block;
-    font-size: 10pt;
+    font-size: 9.5pt;
     font-weight: normal;
-    margin-top: 2mm;
+    text-transform: none;
+    color: #6b6575;
+    margin-top: 1.5mm;
+    letter-spacing: 0;
   }
+
   .party-block { margin-bottom: 3mm; }
   .party-block b { display: inline; }
   .field-grid { display: flex; flex-wrap: wrap; gap: 0 8mm; }
   .field-grid .field { flex: 1 1 45%; margin: 1mm 0; }
   .intro { margin: 4mm 0; text-align: justify; }
-  hr.sep { border: none; border-top: 1px solid #999; margin: 5mm 0; }
+  hr.sep { border: none; border-top: 1px solid var(--line); margin: 5mm 0; }
+
   h2.clause-title {
-    font-size: 11.5pt;
+    font-size: 11pt;
+    font-weight: bold;
     text-transform: uppercase;
-    margin: 5mm 0 2mm 0;
+    letter-spacing: 0.2pt;
+    color: var(--accent-dark);
+    border-left: 2.6pt solid var(--accent);
+    padding-left: 2.5mm;
+    margin: 6mm 0 2.5mm 0;
     page-break-after: avoid;
   }
   p.clause-item {
@@ -53,10 +96,11 @@
     page-break-inside: avoid;
   }
   table.cancel-table th, table.cancel-table td {
-    border: 1px solid #444;
+    border: 1px solid var(--line);
     padding: 1.8mm 2.5mm;
   }
-  table.cancel-table th { background: #f1eeee; text-align: left; }
+  table.cancel-table th { background: var(--accent-tint); color: var(--accent-dark); text-align: left; }
+  table.cancel-table tr:nth-child(even) td { background: #fbfaff; }
   table.cancel-table td.num { text-align: right; }
   .items-table {
     width: 100%;
@@ -65,10 +109,11 @@
     font-size: 10.5pt;
   }
   .items-table th, .items-table td {
-    border: 1px solid #999;
+    border: 1px solid var(--line);
     padding: 1.6mm 2.2mm;
     text-align: left;
   }
+  .items-table th { background: var(--accent-tint); color: var(--accent-dark); }
   .items-table td.num, .items-table th.num { text-align: right; white-space: nowrap; }
   .checkbox-line { margin: 1mm 0; }
   .checkbox-mark {
@@ -83,10 +128,12 @@
     vertical-align: middle;
   }
   .attention-box {
-    border: 1.4px solid #333;
+    border: 1.4px solid var(--accent);
+    border-left: 3.2pt solid var(--accent);
+    border-radius: 1.5mm;
     padding: 3mm 4mm;
     margin: 3mm 0;
-    background: #faf7f2;
+    background: var(--accent-tint);
   }
   .signature-page { page-break-before: always; }
   .signature-grid {
@@ -103,8 +150,13 @@
   .annex-title {
     text-align: center;
     font-size: 12.5pt;
+    font-weight: bold;
     text-transform: uppercase;
+    letter-spacing: 0.3pt;
+    color: var(--accent-dark);
     margin: 0 0 4mm 0;
+    padding-bottom: 3mm;
+    border-bottom: 1.4pt solid var(--accent);
     page-break-before: always;
   }
   .muted { color: #555; }
@@ -113,9 +165,18 @@
 </head>
 <body>
 
+  <div class="letterhead">
+    {{#if companyLogoDataUri}}
+    <img class="letterhead-logo" src="{{{companyLogoDataUri}}}" alt="{{companyName}}" />
+    {{/if}}
+    <div class="letterhead-text">
+      <div class="letterhead-name">{{companyName}}</div>
+      <div class="letterhead-tagline">Decoração de Festas e Eventos</div>
+    </div>
+  </div>
+
   <h1 class="doc-title">
     Contrato de Prestação de Serviços de<br />Decoração de Festas e Eventos
-    <small>{{companyName}}</small>
   </h1>
 
   <div class="party-block">
@@ -241,9 +302,12 @@
   <p class="clause-item">7.4. Os percentuais acima constituem critério contratual previamente informado ao CONTRATANTE para disciplinar os efeitos econômicos do cancelamento e deverão ser interpretados de acordo com a legislação aplicável e com a natureza concreta da contratação.</p>
   <p class="clause-item">7.5. Caso já tenham sido adquiridos ou produzidos especificamente para o evento materiais personalizados, produtos, impressões, estruturas, flores, itens de terceiros ou outros bens que não possam ser razoavelmente reaproveitados ou cancelados sem custo, tais valores poderão ser considerados na apuração do cancelamento, desde que devidamente comprováveis.</p>
   <p class="clause-item">7.6. A soma das retenções e valores efetivamente não recuperáveis relacionados à contratação não poderá resultar em cobrança superior ao valor total contratado.</p>
-  <p class="clause-item">7.7. Caso o valor já pago seja superior ao valor que, de acordo com a tabela acima e demais valores legitimamente considerados, deva ser retido, eventual saldo será restituído ao CONTRATANTE.</p>
+  <div class="attention-box">
+    <p class="clause-item"><b>7.7. NÃO HÁ DEVOLUÇÃO EM DINHEIRO.</b> Ressalvado o exercício do direito de arrependimento legalmente assegurado (Cláusula 11ª) ou outra hipótese de devolução em pecúnia exigida por norma de ordem pública, o cancelamento por iniciativa do CONTRATANTE não gera devolução em dinheiro dos valores já pagos. O valor efetivamente pago que exceder o percentual de retenção apurado nos termos dos itens 7.3, 7.5 e 7.6 será integralmente convertido em <b>CRÉDITO</b> em favor do CONTRATANTE, nos termos da Cláusula 9ª, para utilização em nova contratação de serviços de decoração junto à CONTRATADA.</p>
+  </div>
   <p class="clause-item">7.8. Caso o valor pago seja inferior ao valor devido em razão do cancelamento, a CONTRATADA poderá cobrar a diferença dentro dos limites legalmente admissíveis.</p>
-  <p class="clause-item">7.9. A CONTRATADA poderá, por mera liberalidade e sem reconhecimento de obrigação, oferecer ao CONTRATANTE a conversão total ou parcial do valor pago em crédito para futura contratação, observadas as condições estabelecidas no documento de concessão do crédito.</p>
+  <p class="clause-item">7.9. A conversão do saldo não retido em crédito, prevista no item 7.7, constitui condição contratual previamente informada ao CONTRATANTE — e não mera liberalidade — em razão dos custos de oportunidade, bloqueio de agenda, organização e demais compromissos assumidos pela CONTRATADA em decorrência da reserva. Essa forma de restituição preserva ao CONTRATANTE o valor econômico não retido, ainda que sob a forma de crédito em vez de devolução em espécie, não configurando enriquecimento sem causa da CONTRATADA nem perda integral e injustificada de valores para o CONTRATANTE.</p>
+  <p class="clause-item">7.10. O disposto nesta cláusula aplica-se exclusivamente ao cancelamento por iniciativa do CONTRATANTE. Quando a impossibilidade de realização do evento decorrer de descumprimento contratual imputável à CONTRATADA, aplicam-se as regras da Cláusula 10ª.</p>
 
   <h2 class="clause-title">Cláusula 8ª – Da Remarcação do Evento</h2>
   <p class="clause-item">8.1. O CONTRATANTE poderá solicitar a alteração da data do evento, desde que a solicitação seja realizada por escrito e haja disponibilidade na agenda da CONTRATADA.</p>
@@ -254,10 +318,12 @@
   <p class="clause-item">8.6. A remarcação não poderá ser utilizada para afastar os efeitos financeiros de um cancelamento quando a nova data não puder ser estabelecida por indisponibilidade da CONTRATADA ou quando o CONTRATANTE desistir posteriormente da nova data.</p>
 
   <h2 class="clause-title">Cláusula 9ª – Do Crédito</h2>
-  <p class="clause-item">9.1. Quando a CONTRATADA oferecer a possibilidade de conversão do valor pago em crédito, o crédito deverá ser formalizado por escrito, indicando: a) valor do crédito; b) data de concessão; c) prazo de utilização; d) serviços em que poderá ser utilizado; e) eventual diferença de preço; f) condições de utilização.</p>
-  <p class="clause-item">9.2. Salvo acordo escrito em sentido contrário, o crédito será pessoal e vinculado ao CONTRATANTE, não podendo ser transferido a terceiros.</p>
-  <p class="clause-item">9.3. A utilização do crédito dependerá da disponibilidade de data da CONTRATADA.</p>
-  <p class="clause-item">9.4. O crédito não poderá ser convertido automaticamente em dinheiro, salvo quando houver obrigação legal de restituição ou acordo escrito entre as partes.</p>
+  <p class="clause-item">9.1. Quando, nos termos do item 7.7, o valor não retido for convertido em crédito, a CONTRATADA emitirá ao CONTRATANTE, em até 10 (dez) dias da efetivação do cancelamento, documento — físico ou eletrônico, inclusive por e-mail ou WhatsApp — indicando: a) valor do crédito; b) data de concessão; c) prazo de validade; d) serviços em que poderá ser utilizado; e) eventual diferença de preço, caso o novo orçamento tenha valor superior; f) condições de utilização.</p>
+  <p class="clause-item">9.2. Salvo acordo escrito em sentido contrário, o crédito terá validade de 12 (doze) meses contados da data de concessão, prazo que poderá ser prorrogado mediante acordo entre as partes, em especial quando a não utilização decorrer de indisponibilidade de agenda da CONTRATADA.</p>
+  <p class="clause-item">9.3. O crédito será pessoal e vinculado ao CONTRATANTE, podendo ser transferido a terceiros (parentes ou terceiros indicados pelo CONTRATANTE) mediante comunicação por escrito e anuência da CONTRATADA.</p>
+  <p class="clause-item">9.4. A utilização do crédito dependerá da disponibilidade de data da CONTRATADA, devendo o CONTRATANTE solicitar a nova reserva com antecedência razoável, especialmente em períodos de alta demanda.</p>
+  <p class="clause-item">9.5. O crédito não poderá ser convertido em dinheiro, salvo quando houver obrigação legal de restituição em pecúnia (a exemplo do direito de arrependimento previsto na Cláusula 11ª) ou acordo escrito entre as partes em sentido contrário.</p>
+  <p class="clause-item">9.6. Caso o crédito não seja utilizado dentro do prazo de validade por causa exclusivamente imputável à CONTRATADA (ex.: indisponibilidade de agenda em todas as datas razoavelmente propostas pelo CONTRATANTE), o prazo será prorrogado automaticamente até que a utilização se torne possível.</p>
 
   <h2 class="clause-title">Cláusula 10ª – Do Cancelamento pela CONTRATADA</h2>
   <p class="clause-item">10.1. Caso a CONTRATADA, sem justa causa e por sua exclusiva responsabilidade, não possa realizar o serviço contratado na data acordada, deverá comunicar o CONTRATANTE tão logo tenha conhecimento da impossibilidade.</p>
@@ -352,11 +418,17 @@
   <p class="clause-item">25.2. Qualquer alteração deverá ser formalizada por escrito.</p>
   <p class="clause-item">25.3. Em caso de divergência entre este contrato e materiais publicitários, conversas ou propostas anteriores, deverão ser consideradas as condições expressamente incorporadas ao contrato e ao orçamento aprovado, observada a legislação aplicável.</p>
 
-  <h2 class="clause-title">Cláusula 26ª – Do Aceite Específico da Política de Cancelamento</h2>
+  <h2 class="clause-title">Cláusula 26ª – Do Aceite Específico da Política de Cancelamento e Crédito</h2>
   <div class="attention-box">
-    <p class="clause-item"><b>ATENÇÃO – LEIA ANTES DE ASSINAR.</b> O CONTRATANTE declara que leu e compreendeu especificamente a política de cancelamento prevista na Cláusula 7ª, incluindo os percentuais de retenção conforme a antecedência do cancelamento.</p>
-    <p class="clause-item">O CONTRATANTE declara ter recebido esclarecimentos sobre essa condição antes da contratação e estar ciente de que o cancelamento por sua iniciativa poderá gerar retenção de parte do valor pago, conforme os critérios estabelecidos neste contrato e respeitada a legislação aplicável.</p>
+    <p class="clause-item"><b>ATENÇÃO – LEIA ANTES DE ASSINAR.</b> O CONTRATANTE declara que leu e compreendeu especificamente a política de cancelamento prevista na Cláusula 7ª e a política de crédito prevista na Cláusula 9ª, incluindo:</p>
+    <ol class="clause-list" type="i">
+      <li>os percentuais de retenção conforme a antecedência do cancelamento (item 7.3);</li>
+      <li>que, em caso de cancelamento por sua iniciativa, <b>não haverá devolução em dinheiro</b> dos valores pagos, sendo o saldo não retido convertido em <b>crédito</b> para uso em nova contratação junto à CONTRATADA (itens 7.7 e 9.1 a 9.6);</li>
+      <li>que a devolução em dinheiro permanece assegurada nas hipóteses legais aplicáveis, em especial o direito de arrependimento (Cláusula 11ª).</li>
+    </ol>
+    <p class="clause-item">O CONTRATANTE declara ter recebido esclarecimentos sobre essas condições antes da contratação e estar ciente de seus efeitos, conforme os critérios estabelecidos neste contrato e respeitada a legislação aplicável.</p>
     <p class="clause-item">Rubrica do CONTRATANTE na Cláusula 7ª: <span class="underline-fill">&nbsp;</span></p>
+    <p class="clause-item">Rubrica do CONTRATANTE na Cláusula 9ª: <span class="underline-fill">&nbsp;</span></p>
     <p class="clause-item">Rubrica do CONTRATANTE na Cláusula 26ª: <span class="underline-fill">&nbsp;</span></p>
   </div>
 
@@ -401,6 +473,7 @@
     </div>
   </div>
 
+  {{#if generateAttachments}}
   <div class="annex-title">Anexo I – Orçamento e Especificação da Decoração</div>
   <div class="field-grid">
     <div class="field"><b>CONTRATANTE:</b> {{clientName}}</div>
@@ -447,6 +520,7 @@
     <div class="field"><b>Data do pagamento:</b> {{downPaymentDateFormatted}}</div>
     <div class="field" style="flex-basis:100%"><b>Comprovante/identificação:</b> {{paymentProofReference}}</div>
   </div>
+  {{/if}}
 
 </body>
 </html>

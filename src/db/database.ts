@@ -19,10 +19,25 @@ export function initDb(): Promise<void> {
     const saved = await get<Uint8Array>(DB_STORAGE_KEY);
     db = saved && saved.byteLength > 0 ? new SQL.Database(saved) : new SQL.Database();
     db.run(schemaSql);
+    migrateSchema(db);
     await persist();
   })();
 
   return initPromise;
+}
+
+/**
+ * `CREATE TABLE IF NOT EXISTS` não adiciona colunas novas a uma tabela já
+ * existente (ex.: banco salvo antes de um campo novo ser criado). Como não
+ * há framework de migração aqui, colunas novas entram via ALTER TABLE,
+ * ignorando o erro quando a coluna já existe.
+ */
+function migrateSchema(database: Database): void {
+  try {
+    database.run(`ALTER TABLE contracts ADD COLUMN generate_attachments INTEGER NOT NULL DEFAULT 0`);
+  } catch {
+    // coluna já existe — banco criado com o schema atual.
+  }
 }
 
 function getDb(): Database {
@@ -77,6 +92,7 @@ const COLUMNS = [
   "signature_city",
   "contract_date",
   "observations",
+  "generate_attachments",
 ] as const;
 
 function toRowValues(data: ContractFormData): (string | number | null)[] {
@@ -116,6 +132,7 @@ function toRowValues(data: ContractFormData): (string | number | null)[] {
     data.signatureCity || null,
     data.contractDate || null,
     data.observations || null,
+    data.generateAttachments ? 1 : 0,
   ];
 }
 
@@ -171,6 +188,7 @@ function rowToRecord(row: Record<string, unknown>): ContractRecord {
     signatureCity: str(row.signature_city),
     contractDate: str(row.contract_date),
     observations: str(row.observations),
+    generateAttachments: Boolean(row.generate_attachments),
     createdAt: String(row.created_at),
     updatedAt: String(row.updated_at),
   };

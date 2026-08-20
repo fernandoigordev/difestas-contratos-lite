@@ -17,6 +17,7 @@ function buildTemplateContext(data: ContractFormData): Record<string, unknown> {
     companyAddress: COMPANY_CONFIG.address,
     companyRepresentativeName: COMPANY_CONFIG.representativeName,
     companyRepresentativeCpf: COMPANY_CONFIG.representativeCpf,
+    companyLogoDataUri: COMPANY_CONFIG.logoDataUri,
 
     clientName: data.clientName,
     clientCpf: data.clientCpf,
@@ -54,6 +55,8 @@ function buildTemplateContext(data: ContractFormData): Record<string, unknown> {
     signatureCity: data.signatureCity,
     contractDateFormatted: formatDateExtendedBR(data.contractDate || new Date().toISOString().slice(0, 10)),
     observations: data.observations,
+
+    generateAttachments: Boolean(data.generateAttachments),
   };
 }
 

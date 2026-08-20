@@ -46,6 +46,9 @@ export interface ContractFormData {
   signatureCity: string;
   contractDate: string;
   observations: string;
+
+  /** Se true, o PDF inclui Anexo I (orçamento detalhado) e Anexo II (comprovante de pagamento). */
+  generateAttachments: boolean;
 }
 
 /** Registro salvo no banco local (SQLite via sql.js). */
@@ -87,17 +90,32 @@ export const EMPTY_CONTRACT_FORM: ContractFormData = {
   signatureCity: "",
   contractDate: "",
   observations: "",
+  generateAttachments: false,
 };
 
 export const EVENT_TYPE_SUGGESTIONS = [
   "Aniversário infantil",
+  "Aniversário infantil (Smash the Cake / 1 aninho)",
+  "Aniversário adulto",
   "Debutante (15 anos)",
   "Casamento",
-  "Chá de bebê / revelação",
-  "Formatura",
-  "Confraternização corporativa",
-  "Batizado",
   "Noivado",
+  "Bodas (aniversário de casamento)",
+  "Chá de bebê / revelação",
+  "Chá de panela",
+  "Chá bar / lingerie",
+  "Baby shower",
+  "Batizado",
+  "Primeira comunhão / crisma",
+  "Formatura",
+  "Despedida de solteiro(a)",
+  "Confraternização corporativa",
+  "Lançamento de produto / evento corporativo",
+  "Dia das Mães",
+  "Dia dos Pais",
+  "Páscoa",
+  "Halloween",
+  "Natal / Ano Novo",
 ];
 
 export const PAYMENT_METHOD_SUGGESTIONS = ["PIX", "Transferência bancária", "Cartão de crédito", "Dinheiro"];
