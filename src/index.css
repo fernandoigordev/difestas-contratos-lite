@@ -30,6 +30,15 @@ select {
   color: inherit;
 }
 
+input[type="checkbox"],
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  accent-color: #7c3aed;
+  cursor: pointer;
+}
+
 /* ---------- layout do app ---------- */
 
 .app-shell {
