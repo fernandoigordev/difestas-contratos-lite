@@ -1,5 +1,6 @@
 import type { StepProps } from "./types";
 import { EVENT_TYPE_SUGGESTIONS } from "@/types/contract";
+import ComboBox from "./ComboBox";
 
 export default function SectionEvento({ data, onChange }: StepProps) {
   return (
@@ -8,17 +9,11 @@ export default function SectionEvento({ data, onChange }: StepProps) {
 
       <div>
         <label className="field-label">Tipo de evento *</label>
-        <input
-          className="field-input"
-          list="event-type-suggestions"
+        <ComboBox
           value={data.eventType}
-          onChange={(e) => onChange({ eventType: e.target.value })}
+          onChange={(value) => onChange({ eventType: value })}
+          options={EVENT_TYPE_SUGGESTIONS}
         />
-        <datalist id="event-type-suggestions">
-          {EVENT_TYPE_SUGGESTIONS.map((s) => (
-            <option key={s} value={s} />
-          ))}
-        </datalist>
       </div>
 
       <div>

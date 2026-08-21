@@ -186,6 +186,42 @@ input[type="radio"] {
   background: #fff;
 }
 
+/* ---------- combobox (substitui input+datalist nativo) ---------- */
+
+.combobox {
+  position: relative;
+}
+
+.combobox-menu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 30;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.14);
+  max-height: 240px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.combobox-option {
+  padding: 10px 12px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.combobox-option + .combobox-option {
+  border-top: 1px solid #f3f4f6;
+}
+
+.combobox-option:hover,
+.combobox-option:active {
+  background: #f5f1fd;
+}
+
 .section-card {
   background: #fff;
   border: 1px solid #e5e7eb;

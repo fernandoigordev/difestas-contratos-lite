@@ -1,5 +1,6 @@
 import type { StepProps } from "./types";
 import { PAYMENT_METHOD_SUGGESTIONS } from "@/types/contract";
+import ComboBox from "./ComboBox";
 
 function round2(n: number): number {
   return Math.round(n * 100) / 100;
@@ -89,17 +90,11 @@ export default function SectionPagamento({ data, onChange }: StepProps) {
 
       <div>
         <label className="field-label">Forma de pagamento</label>
-        <input
-          className="field-input"
-          list="payment-method-suggestions"
+        <ComboBox
           value={data.paymentMethod}
-          onChange={(e) => onChange({ paymentMethod: e.target.value })}
+          onChange={(value) => onChange({ paymentMethod: value })}
+          options={PAYMENT_METHOD_SUGGESTIONS}
         />
-        <datalist id="payment-method-suggestions">
-          {PAYMENT_METHOD_SUGGESTIONS.map((s) => (
-            <option key={s} value={s} />
-          ))}
-        </datalist>
       </div>
 
       <div className="grid grid-cols-2 gap-3">

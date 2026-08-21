@@ -85,8 +85,18 @@ export function openContractForPrint(data: ContractFormData): void {
   }
 
   printWindow.addEventListener("load", () => {
-    printWindow.focus();
-    printWindow.print();
+    // Espera as imagens (ex.: logo embutida em base64) terminarem de
+    // decodificar antes de imprimir — no Safari/iOS, chamar print() cedo
+    // demais pode gerar um PDF sem a imagem, mesmo com ela já no HTML.
+    const images = Array.from(printWindow.document.images);
+    const ready = images.length
+      ? Promise.all(images.map((img) => img.decode().catch(() => undefined)))
+      : Promise.resolve();
+
+    ready.then(() => {
+      printWindow.focus();
+      printWindow.print();
+    });
   });
 
   // Libera o objeto Blob depois de um tempo (a aba já terá carregado o conteúdo).

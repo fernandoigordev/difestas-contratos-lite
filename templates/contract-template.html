@@ -11,7 +11,15 @@
    * repete em toda página impressa/gerada como PDF.
    */
   @page { size: A4; margin: 20mm 16mm 22mm; }
-  * { box-sizing: border-box; }
+  * {
+    box-sizing: border-box;
+    /* Sem isso, boa parte dos navegadores ignora cor de fundo/realce ao
+       imprimir ou gerar PDF, deixando o contrato bem mais "apagado" do
+       que a pré-visualização em tela. */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color-adjust: exact;
+  }
 
   :root {
     --accent: #7c3aed;
